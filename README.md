@@ -49,4 +49,4 @@ The script uses the following standard Python libraries:
   ***Non-Existing Files:***
         If some of the specific files do not exist on the system, the script may fail when trying to copy them. Make sure these files are present on the target system.
 
-- Certifique-se de revisar as evidências coletadas para garantir que todas as informações relevantes sejam preservadas.
+- Be sure to review the evidence collected to ensure all relevant information is preserved.
