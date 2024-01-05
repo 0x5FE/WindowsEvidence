@@ -30,10 +30,14 @@ Example of use:
 
 The script uses the following standard Python libraries:
 
-    os
-    shutil
-    time
-    argparse
+           os
+        shutil
+         time
+         argparse
+         logging
+         hashlib
+         zipfile
+         cryptography.fernet
 
 # Possible Errors and Solutions
 
