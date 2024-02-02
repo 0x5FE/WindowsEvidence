@@ -1,56 +1,44 @@
-# Functionalities
+# Funcionalidades
 
-- ***Event Viewer Log Collection:***
-        Copies the Windows event log files, including Application.evtx, Security.evtx, and System.evtx, located in ***C:\Windows\System32\winevt\Logs\***, to the evidence directory.
+- ***Coleta de registros do visualizador de eventos:***
+        Copia os arquivos de log de eventos do Windows, incluindo Application.evtx, Security.evtx e System.evtx, localizados em ***C:\Windows\System32\winevt\Logs\***, para o diretório de evidências.
 
-- ***System Configuration File Collection:***
-        Copies the system configuration files, such as sam, security, and system, ***located in C:\Windows\System32\config\, to the evidence directory.***
+- ***Coleta de arquivos de configuração do sistema:***
+        Copia os arquivos de configuração do sistema, como sam, security e system, ***localizados em C:\Windows\System32\config\, para o diretório de evidências.***
 
-- ***Application Data Collection:***
-        Retrieves application-relevant data files, including databases (.db), text files (.txt), and log files (.log), from specific directories in ***C:\Users\*\\AppData\Roaming and C :\Program Files\*\\AppData\Roaming.***
+- ***Coleta de dados do aplicativo:***
+        Recupera arquivos de dados relevantes para o aplicativo, incluindo bancos de dados (.db), arquivos de texto (.txt) e arquivos de log (.log), de diretórios específicos em ***C:\Users\*\\AppData\Roaming e C : \Arquivos de Programas\*\\AppData\Roaming.***
 
-- ***Unique Evidence Directory Identification:***
-        The evidence directory is named according to the machine name and a timestamp, ensuring uniqueness and facilitating organization.
+- ***Identificação única do diretório de evidências:***
+        O diretório de evidências é nomeado de acordo com o nome da máquina e um carimbo de data/hora, garantindo exclusividade e facilitando a organização.
 
-- ***Completion Message Display:***
-        After collection is complete, it displays a message indicating the directory where the evidence was stored.
+- ***Exibição de mensagem de conclusão:***
+        Após a conclusão da coleta, é exibida uma mensagem indicando o diretório onde as evidências foram armazenadas.
 
 
-The script is run from the command line and requires two mandatory arguments:
+O script é executado na linha de comando e requer dois argumentos obrigatórios:
 
-    machine_name: Name of the target machine.
+    machine_name: nome da máquina de destino.
     
-    evidence_dir: Destination directory to store collected evidence
+    evidencia_dir: Diretório de destino para armazenar evidências coletadas
 
-Example of use:
+# Exemplo de uso:
 
-`python script.py machine_name C:\path\to\store\evidence`
+`python audit.py machine_name C:\path\to\store\evidence`
 
-# Dependencies
 
-The script uses the following standard Python libraries:
+# Possíveis erros e soluções
 
-           os
-        shutil
-         time
-         argparse
-         logging
-         hashlib
-         zipfile
-         cryptography.fernet
+  ***Argumentos ausentes:***
+        Se os argumentos machine_name ou evidencia_dir estiverem faltando, o script exibirá mensagens de erro. Certifique-se de fornecer ambos os argumentos.
 
-# Possible Errors and Solutions
+   ***Permissões insuficientes:***
+        Certifique-se de que o usuário que executa o script tenha as permissões necessárias para acessar os arquivos e diretórios especificados.
 
-  ***Missing Arguments:***
-        If the machine_name or evidence_dir arguments are missing, the script displays error messages. Be sure to provide both arguments.
+  ***Diretório de destino inexistente:***
+        Se o diretório de destino especificado não existir, o script tentará criá-lo. No entanto, certifique-se de ter permissões suficientes para criar diretórios no caminho especificado.
 
-   ***Insufficient Permissions:***
-        Make sure that the user running the script has the necessary permissions to access the specified files and directories.
+  ***Arquivos não existentes:***
+        Se alguns dos arquivos específicos não existirem no sistema, o script poderá falhar ao tentar copiá-los. Certifique-se de que esses arquivos estejam presentes no sistema de destino.
 
-  ***Non-existent Destination Directory:***
-        If the specified destination directory does not exist, the script will attempt to create it. However, make sure you have sufficient permissions to create directories in the specified path.
-
-  ***Non-Existing Files:***
-        If some of the specific files do not exist on the system, the script may fail when trying to copy them. Make sure these files are present on the target system.
-
-- Be sure to review the evidence collected to ensure all relevant information is preserved.
+- Certifique-se de revisar as evidências coletadas para garantir que todas as informações relevantes sejam preservadas.
